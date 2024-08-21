@@ -13,8 +13,9 @@ GREEN="$(tput setaf 2)"
 NORMAL="$(tput sgr0)"
 
 # utility
-info() {
-    printf "%s %b\n" "${GREEN}info" "${NORMAL}${*}"
+info()
+{
+  printf "%s %b\n" "${GREEN}info" "${NORMAL}${*}"
 }
 
 info "Formatting nix files"
@@ -25,4 +26,4 @@ info "Formatting shell scripts"
 shfmt -s -w -l -i 2 -ci -fn $(shfmt -f $(git grep -l '' :/))
 
 info "Formatting python scripts"
-black --include scripts/tests "$ROOT"
+black --include bin/tests "$ROOT"
