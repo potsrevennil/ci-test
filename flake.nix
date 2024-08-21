@@ -1,5 +1,5 @@
 {
-  description = "Foo";
+  description = "GMail SSO";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
@@ -15,13 +15,15 @@
       let
         wrapShell = mkShell: attrs:
           mkShell (attrs // {
-            shellHook = ''
+            preShellHook = ''
               export PATH=$PWD/bin:$PATH
             '';
           });
+        venv = "./venv";
       in
       {
         devShells.default = wrapShell pkgs.mkShellNoCC {
+          venvDir = "${venv}";
           packages = builtins.attrValues {
             inherit (pkgs)
               direnv
@@ -37,9 +39,16 @@
 
             inherit (pkgs.python311Packages)
               python
+              venvShellHook
               black
               ;
           };
+
+          postShellHook = ''
+            if [ -e requirements.txt ]; then
+                ${venv}/bin/python3 -m pip install -r requirements.txt
+            fi
+          '';
         };
 
       };
