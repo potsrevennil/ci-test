@@ -1,0 +1,22 @@
+name: Foo
+on:
+  push:
+    branches: ["*"]
+    paths:
+      - tmp.txt
+  pull_request:
+    branches: ["main"]
+    types: [ "opened", "synchronize" ]
+    paths:
+      - tmp.txt
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  foo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo foo
