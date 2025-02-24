@@ -1,7 +1,7 @@
 name: Foo
 on:
   push:
-    branches: ["*"]
+    branches: ["main"]
     paths:
       - tmp.txt
   pull_request:
