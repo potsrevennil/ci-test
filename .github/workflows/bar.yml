@@ -26,4 +26,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo bar ${{ github.event_name }}
+          echo bar ${{ github.event.action }}
