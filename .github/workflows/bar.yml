@@ -6,7 +6,7 @@ on:
     paths:
       - "tmp.txt"
   push:
-    branches: ["*"]
+    branches: ["main"]
     paths:
       - "**"
       - "!tmp.txt"
