@@ -3,11 +3,17 @@ on:
   workflow_run:
     workflows: [ "Foo" ]
     types: [ completed ]
+    paths:
+      - "tmp.txt"
   push:
     branches: ["*"]
+    paths:
+      - "!tmp.txt"
   pull_request:
     branches: ["main"]
     types: [ "opened", "synchronize" ]
+    paths:
+      - "!tmp.txt"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
