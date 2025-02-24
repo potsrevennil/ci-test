@@ -3,8 +3,6 @@ on:
   workflow_run:
     workflows: [ "Foo" ]
     types: [ completed ]
-    paths:
-      - "tmp.txt"
   push:
     branches: ["*"]
     paths:
