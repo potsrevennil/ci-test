@@ -1,4 +1,4 @@
-name: Foo
+name: Foo Test
 on:
   push:
     branches: ["main"]

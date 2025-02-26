@@ -1,7 +1,8 @@
 name: Bar
 on:
   workflow_run:
-    workflows: [ "Foo" ]
+    workflows:
+      - "Foo Test"
     types: [ completed ]
 
 concurrency:
